@@ -1,0 +1,719 @@
+<!DOCTYPE html>
+<html lang="zh-Hant-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#f3eee3">
+<meta name="color-scheme" content="light">
+<title>一片茶葉的旅程｜湖口高中茶道與美學社</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700&family=Noto+Serif+TC:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --paper:#f3eee3;
+  --paper-deep:#e8dfcc;
+  --card:#f8f4ec;
+  --ink:#1f1b17;
+  --ink-2:#4b443c;
+  --ink-3:#8a8175;
+  --tea:#7a5433;
+  --tea-2:#b8946b;
+  --green:#3b5a44;
+  --red:#9c3b25;
+  --moss:#2e4a3b;
+  --moss-2:#6f8a72;
+  --line:rgba(31,27,23,.16);
+  --line-strong:rgba(31,27,23,.5);
+  --serif:"Noto Serif TC","Source Han Serif TC","Songti TC","PMingLiU",serif;
+  --sans:"Noto Sans TC","PingFang TC","Microsoft JhengHei","Heiti TC",sans-serif;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{-webkit-text-size-adjust:100%}
+body{
+  min-height:100vh;min-height:100dvh;
+  background-color:var(--paper);
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 .45 0 0 0 0 .34 0 0 0 0 .2 0 0 0 .07 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  color:var(--ink);
+  font-family:var(--sans);
+  font-size:17px;
+  line-height:1.75;
+  -webkit-font-smoothing:antialiased;
+  -webkit-tap-highlight-color:transparent;
+}
+button{font:inherit;color:inherit;touch-action:manipulation;cursor:pointer}
+[tabindex="-1"]:focus{outline:none}
+button:focus-visible{outline:2px solid var(--tea);outline-offset:3px}
+
+.wrap{
+  max-width:520px;margin:0 auto;
+  min-height:100vh;min-height:100dvh;
+  padding:calc(18px + env(safe-area-inset-top)) 20px calc(28px + env(safe-area-inset-bottom));
+  display:flex;flex-direction:column;
+}
+.screen{display:flex;flex-direction:column;flex:1;animation:fadein .35s ease both}
+@keyframes fadein{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
+@media (prefers-reduced-motion:reduce){.screen{animation:none}}
+
+/* ---------- 共用 ---------- */
+.kicker{font-size:13px;letter-spacing:.24em;color:var(--tea)}
+.serif{font-family:var(--serif)}
+.btn-primary{
+  display:block;width:100%;min-height:56px;
+  border:0;border-radius:2px;
+  background:var(--ink);color:var(--paper);
+  font-size:18px;letter-spacing:.2em;
+}
+.btn-primary:active{background:#3a332c}
+.btn-text{
+  background:none;border:0;padding:10px 4px;
+  color:var(--ink-2);font-size:15px;
+  text-decoration:underline;text-underline-offset:4px;text-decoration-color:var(--tea-2);
+}
+.actions{margin-top:28px}
+.actions[hidden],.fb[hidden],.reason[hidden]{display:none}
+
+/* ---------- 首頁 ---------- */
+.home{justify-content:space-between;gap:28px}
+.home-top{display:flex;justify-content:space-between;align-items:flex-start;border-top:1px solid var(--ink);padding-top:12px}
+.stamp{
+  display:block;text-align:center;line-height:1.25;
+  font-family:var(--serif);font-size:14px;
+  color:var(--red);border:1.5px solid var(--red);
+  padding:7px 5px;border-radius:2px;transform:rotate(-2deg);
+}
+.home-title{font-family:var(--serif);font-weight:700;font-size:36px;line-height:1.35;letter-spacing:.06em;margin-top:4px}
+.home-mid{display:flex;flex-direction:column;align-items:flex-start;gap:22px}
+.cup{width:128px;color:var(--ink)}
+.lede{font-family:var(--serif);font-size:22px;line-height:1.7;letter-spacing:.04em}
+.home-note{margin-top:12px;font-size:13px;color:var(--ink-3);text-align:center;letter-spacing:.05em}
+
+/* ---------- 題目頁頂部 ---------- */
+.topbar{display:flex;justify-content:space-between;align-items:baseline;gap:12px;font-size:13px;color:var(--ink-2);letter-spacing:.08em}
+.topbar .count{font-variant-numeric:tabular-nums;color:var(--ink);font-weight:500;white-space:nowrap}
+.progress{display:grid;grid-template-columns:repeat(10,1fr);gap:4px;margin:10px 0 30px}
+.progress span{height:3px;background:var(--line)}
+.progress span.done{background:var(--tea-2)}
+.progress span.now{background:var(--ink)}
+
+.kind{display:inline-block;align-self:flex-start;font-size:13px;letter-spacing:.12em;color:var(--tea);border-bottom:1px solid var(--tea-2);padding-bottom:2px;margin-bottom:14px}
+.q{font-family:var(--serif);font-weight:600;font-size:25px;line-height:1.55;letter-spacing:.03em;margin-bottom:24px}
+.sub{color:var(--ink-2);font-size:15px;margin:-12px 0 20px}
+
+/* ---------- 選項 ---------- */
+.opts{display:grid;gap:10px}
+.opt{
+  position:relative;display:flex;align-items:center;gap:12px;
+  width:100%;min-height:58px;padding:13px 16px;
+  text-align:left;font-size:18px;line-height:1.5;
+  background:var(--card);border:1px solid var(--line-strong);border-radius:3px;
+  transition:background .15s,border-color .15s,opacity .2s;
+}
+.opt:active{background:var(--paper-deep)}
+.opt .mark{flex:0 0 auto;width:1.4em;font-family:var(--serif);font-size:15px;color:var(--tea)}
+.opt .txt{flex:1}
+.opt:disabled{cursor:default}
+.opts.done .opt:not(.picked):not(.is-answer){opacity:.45}
+.opt.picked{border-color:var(--ink);background:#efe5d3;box-shadow:inset 4px 0 0 var(--tea)}
+.opt.is-answer{border-color:var(--green);box-shadow:inset 4px 0 0 var(--green)}
+.badge{flex:0 0 auto;font-size:12px;letter-spacing:.1em;color:var(--green);border:1px solid var(--green);padding:0 6px;border-radius:2px}
+.badge.mine{color:var(--tea);border-color:var(--tea)}
+
+/* ---------- 回饋 ---------- */
+.fb{margin-top:24px;padding-top:16px;border-top:1px solid var(--ink)}
+.fb .lead{font-size:14px;color:var(--tea);letter-spacing:.06em;margin-bottom:6px}
+.fb .text{font-family:var(--serif);font-size:18px;line-height:1.8}
+
+/* ---------- 排序 ---------- */
+.sort-list{display:grid;gap:10px}
+.sort-item .num{
+  flex:0 0 auto;width:30px;height:30px;border-radius:50%;
+  border:1px dashed var(--line-strong);
+  display:flex;align-items:center;justify-content:center;
+  font-family:var(--serif);font-size:15px;color:var(--ink-3);
+}
+.sort-item.set .num{border:1px solid var(--ink);background:var(--ink);color:var(--paper)}
+.sort-item.set{border-color:var(--ink)}
+.sort-tools{display:flex;justify-content:space-between;align-items:center;margin-top:8px;font-size:14px;color:var(--ink-3)}
+.route{list-style:none;margin:6px 0 14px;padding-left:4px}
+.route li{position:relative;padding:0 0 12px 26px;font-size:16px}
+.route li::before{content:"";position:absolute;left:5px;top:.6em;width:9px;height:9px;border-radius:50% 0;background:var(--moss)}
+.route li:not(:last-child)::after{content:"";position:absolute;left:9px;top:1.25em;bottom:-.1em;border-left:1px dashed var(--tea-2)}
+
+/* ---------- 投票 ---------- */
+.teas{display:grid;gap:10px}
+.tea{
+  display:flex;align-items:center;gap:14px;width:100%;min-height:72px;padding:14px 16px;
+  text-align:left;background:var(--card);border:1px solid var(--line-strong);border-radius:3px;
+}
+.tea .letter{font-family:var(--serif);font-size:26px;color:var(--tea);width:1.2em}
+.tea .cupno{display:block;font-size:13px;color:var(--ink-3);letter-spacing:.1em}
+.tea .name{display:block;font-family:var(--serif);font-size:21px;font-weight:600;letter-spacing:.06em}
+.tea[aria-pressed="true"]{border-color:var(--ink);background:#efe5d3;box-shadow:inset 4px 0 0 var(--tea)}
+.reason{margin-top:30px}
+.reason h3{font-family:var(--serif);font-size:21px;font-weight:600;margin-bottom:14px}
+.reason .opt{min-height:52px;font-size:17px}
+.reason .opt[aria-pressed="true"]{border-color:var(--ink);background:#efe5d3;box-shadow:inset 4px 0 0 var(--tea)}
+
+/* ---------- 中場 ---------- */
+.pause{flex:1;display:flex;flex-direction:column;justify-content:center;gap:18px}
+.pause h2{font-family:var(--serif);font-size:28px;font-weight:600;letter-spacing:.04em}
+.pause p{font-size:17px;color:var(--ink-2)}
+.pause .dry{font-size:14px;color:var(--ink-3)}
+
+/* ---------- 最後 ---------- */
+.final{gap:22px}
+.quote{font-family:var(--serif);font-size:24px;line-height:1.8;letter-spacing:.04em;margin-top:18px}
+.rule{width:44px;border:0;border-top:2px solid var(--tea)}
+.put-down{font-size:22px;font-weight:700;letter-spacing:.06em}
+.paper-task{font-family:var(--serif);font-size:19px;line-height:1.8}
+.paper-ex{font-size:15px;color:var(--ink-2)}
+.mine-card{margin-top:8px;border:1px solid var(--line-strong);background:var(--card);padding:16px;border-radius:3px;font-size:15px;color:var(--ink-2)}
+.mine-card dt{font-size:12px;letter-spacing:.14em;color:var(--tea);margin-top:10px}
+.mine-card dt:first-child{margin-top:0}
+.mine-card dd{font-family:var(--serif);font-size:18px;color:var(--ink)}
+.mine-card .note{margin-top:12px;padding-top:10px;border-top:1px solid var(--line);font-size:13px;color:var(--ink-3)}
+.final .btn-text{align-self:center;margin-top:4px}
+
+/* ---------- 港口茶小註 ---------- */
+.port-note{margin-top:14px;padding:12px 14px;border-left:3px solid var(--moss);background:rgba(46,74,59,.06);font-size:15px;line-height:1.75;color:var(--ink-2)}
+.port-note b{color:var(--moss);font-weight:600}
+
+/* ---------- 紀念頁：茶葉登船證 ---------- */
+.memento-page{align-items:center;gap:14px}
+.ticket{
+  position:relative;width:100%;max-width:370px;
+  background:var(--card);border-radius:14px;overflow:hidden;
+  box-shadow:0 1px 0 rgba(31,27,23,.08),0 14px 34px rgba(80,55,25,.16);
+}
+.ticket::after{ /* 印刷顆粒 */
+  content:"";position:absolute;inset:0;pointer-events:none;opacity:.55;mix-blend-mode:multiply;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='1.1' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 .3 0 0 0 0 .25 0 0 0 0 .15 0 0 0 .12 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+.t-head{display:flex;justify-content:space-between;align-items:center;background:var(--moss);color:#f3eee3;padding:12px 18px}
+.t-head .t-title{font-family:var(--serif);font-size:17px;font-weight:700;letter-spacing:.24em}
+.t-head .t-en{font-size:10px;letter-spacing:.32em;opacity:.75}
+.t-head .t-club{text-align:right;font-size:11px;line-height:1.45;letter-spacing:.12em;opacity:.9}
+.t-route{display:grid;grid-template-columns:1fr auto 1fr;align-items:end;gap:8px;padding:14px 18px 6px}
+.t-route .lab{display:block;font-size:10px;letter-spacing:.28em;color:var(--ink-3)}
+.t-route .place{display:block;font-family:var(--serif);font-size:23px;font-weight:700;line-height:1.3;letter-spacing:.04em}
+.t-route .t-sub{display:block;font-size:11px;color:var(--ink-2);letter-spacing:.06em}
+.t-route .to{text-align:right}
+.t-route .arrow{padding-bottom:22px;color:var(--tea)}
+.t-scene{display:block;width:100%;height:auto}
+.t-line{padding:10px 18px 0;font-family:var(--serif);font-size:16px;color:var(--moss);letter-spacing:.03em}
+.t-line small{display:block;font-family:var(--sans);font-size:11px;color:var(--ink-3);letter-spacing:.14em;margin-bottom:2px}
+.t-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px 14px;padding:12px 18px 16px}
+.t-grid .lab{display:block;font-size:10px;letter-spacing:.24em;color:var(--ink-3)}
+.t-grid .val{display:block;font-family:var(--serif);font-size:16px;font-weight:600;line-height:1.4}
+.t-grid .val.big{font-size:22px;color:var(--moss)}
+.t-perf{position:relative;height:0;border-top:2px dashed rgba(31,27,23,.28);margin:0 16px}
+.t-perf::before,.t-perf::after{content:"";position:absolute;top:-12px;width:22px;height:22px;border-radius:50%;background:var(--paper)}
+.t-perf::before{left:-28px}.t-perf::after{right:-28px}
+.t-stub{display:flex;align-items:center;gap:14px;padding:14px 18px 16px}
+.t-bar{flex:1;height:40px;background:repeating-linear-gradient(90deg,var(--ink) 0 2px,transparent 2px 4px,var(--ink) 4px 5px,transparent 5px 8px,var(--ink) 8px 11px,transparent 11px 12px,var(--ink) 12px 13px,transparent 13px 17px)}
+.t-no{font-size:11px;line-height:1.5;letter-spacing:.1em;color:var(--ink-2);text-align:right;font-variant-numeric:tabular-nums}
+.memento-hint{font-size:14px;color:var(--ink-3);text-align:center}
+.memento-after{font-family:var(--serif);font-size:17px;text-align:center;line-height:1.8}
+</style>
+</head>
+<body>
+<main class="wrap" id="app" aria-live="off"></main>
+
+<script>
+(function () {
+  'use strict';
+
+  var app = document.getElementById('app');
+  var TOTAL = 10;
+  var LETTERS = ['A', 'B', 'C', 'D', 'E'];
+  var reduceMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  var TEAS = [
+    { key: 'A', cup: '第一杯', name: '文山包種' },
+    { key: 'B', cup: '第二杯', name: '港口茶' },
+    { key: 'C', cup: '第三杯', name: '紅烏龍' }
+  ];
+  var REASONS = ['比較香', '比較甜', '比較順', '比較有記憶點', '單純就是比較喜歡'];
+
+  var STAGE = {
+    1: '第一段｜從今天的一杯往回走',
+    2: '第二段｜一片茶葉的旅行'
+  };
+
+  var KIND = {
+    know: '知識題',
+    feel: '感受題・沒有標準答案',
+    taste: '茶湯偏好・沒有標準答案',
+    guess: '猜猜看・沒有標準答案',
+    sort: '排序題',
+    vote: '最後投票'
+  };
+
+  var QUESTIONS = [
+    {
+      stage: 1, type: 'feel',
+      q: '第一杯，入口後你最先注意到什麼？',
+      options: ['香氣', '溫度', '味道淡淡的', '喝完以後，嘴裡留下的味道', '老實說，我剛剛在聊天'],
+      fb: '這題沒有標準答案，放心。先注意到的地方，常常就是你記住這杯茶的方式。',
+      fbBy: { 4: '也算一種喝法。很多茶，本來就是邊聊邊喝的。' }
+    },
+    {
+      stage: 1, type: 'know',
+      q: '巷口手搖店的紅茶，和第一杯喝起來差很多。可能跟什麼有關？',
+      options: ['茶樹的品種', '種在哪裡', '怎麼製作', '以上都有關係'],
+      answer: 3,
+      fb: '品種、產地、製作，再加上沖泡和加料，都會把茶帶往不同方向。珍珠奶茶也是茶的其中一站。'
+    },
+    {
+      stage: 1, type: 'know',
+      q: '茶葉從茶樹上摘下來，可以直接泡成我們喝的茶嗎？',
+      options: ['可以，摘下來就能泡', '不行，還要經過一連串製作', '可以，但要先冰過'],
+      answer: 1,
+      fb: '很可惜，離開茶樹只是旅程的開始。萎凋、揉捻、乾燥……每一步都在決定杯子裡的味道。'
+    },
+    {
+      stage: 1, type: 'guess',
+      q: '如果要猜，第一杯是從什麼樣的地方來的？',
+      options: ['山上的茶園', '靠海的地方', '城市旁邊的平地', '完全沒有頭緒'],
+      fb: '茶名先保密。等一下聽完故事，可以回頭對照你現在的猜測。',
+      fbBy: { 3: '很誠實。茶名先保密，等一下的故事裡可能會有線索。' }
+    },
+    {
+      stage: 1, type: 'taste',
+      q: '第一杯，比較像一天裡的哪個時候？',
+      options: ['早上第一節之前', '午餐後的第五節', '放學走出校門', '晚上寫作業的時候'],
+      fb: '沒有標準答案。同一杯茶，每個人會把它放進一天裡不同的位置。'
+    },
+    {
+      stage: 2, type: 'know',
+      q: '很多語言裡，「茶」的念法大致分成像 cha 和像 tea 兩類。這個差別跟什麼比較有關？',
+      options: ['茶湯的顏色', '茶當年走海路還是陸路傳出去', '喝茶時有沒有加牛奶', '純屬巧合'],
+      answer: 1,
+      fb: '大致上，從海路傳出去的多念像 tea，走陸路的多念像 cha。念法裡留著茶移動的路線。'
+    },
+    {
+      stage: 2, type: 'sort',
+      q: '把一片茶葉的旅程排好。照發生的順序，一個一個點。',
+      items: ['從港口上船', '在茶園被摘下', '倒進某個人的杯子', '裝進防潮的茶箱', '在茶廠被製作'],
+      correct: [1, 4, 3, 0, 2],
+      fb: '茶葉目前還沒有瞬間移動能力。以前的臺灣茶，也是這樣裝箱、從港口出發。'
+    },
+    {
+      stage: 2, type: 'know',
+      q: '東方美人茶特別的蜜香，跟哪一位「訪客」有關？',
+      options: ['蜜蜂', '小綠葉蟬', '蝴蝶', '偷偷加蜂蜜的人'],
+      answer: 1,
+      fb: '小綠葉蟬吸食嫩芽後，茶樹的反應加上製作，帶出了特別的蜜香。被咬過，反而成了特色。'
+    },
+    {
+      stage: 2, type: 'taste',
+      q: '第二杯和第三杯，哪一杯比較像放學後？',
+      options: ['第二杯', '第三杯', '兩杯都像', '都不像，放學只想回家'],
+      fb: '這題也沒有標準答案。味道常常會跟某個時間、某個地方綁在一起。'
+    },
+    { stage: 2, type: 'vote' }
+  ];
+
+  var state;
+  function reset() {
+    state = { i: 0, picks: {}, vote: null, reason: null };
+  }
+
+  /* ---------- 小工具 ---------- */
+  function $(sel, root) { return (root || app).querySelector(sel); }
+  function $$(sel, root) { return Array.prototype.slice.call((root || app).querySelectorAll(sel)); }
+
+  function show(html) {
+    app.innerHTML = '<section class="screen">' + html + '</section>';
+    window.scrollTo(0, 0);
+    var h = $('h1, h2');
+    if (h) { h.setAttribute('tabindex', '-1'); try { h.focus({ preventScroll: true }); } catch (e) { h.focus(); } }
+  }
+
+  function reveal(node) {
+    if (!node) return;
+    node.hidden = false;
+    setTimeout(function () {
+      node.scrollIntoView({ behavior: reduceMotion ? 'auto' : 'smooth', block: 'end' });
+    }, 60);
+  }
+
+  function progress(current, doneCount) {
+    var s = '<div class="progress" aria-hidden="true">';
+    for (var k = 0; k < TOTAL; k++) {
+      var cls = k < doneCount ? 'done' : (k === current ? 'now' : '');
+      s += '<span class="' + cls + '"></span>';
+    }
+    return s + '</div>';
+  }
+
+  function head(q) {
+    return '<div class="topbar"><span class="stage">' + STAGE[q.stage] + '</span>' +
+      '<span class="count" aria-label="第 ' + (state.i + 1) + ' 題，共 ' + TOTAL + ' 題">' + (state.i + 1) + ' / ' + TOTAL + '</span></div>' +
+      progress(state.i, state.i) +
+      '<p class="kind">' + KIND[q.type] + '</p>';
+  }
+
+  function nextLabel() {
+    return state.i === 4 ? '先到這裡' : '下一題';
+  }
+
+  function goNext() {
+    if (state.i === 4) { renderPause(); return; }
+    state.i++;
+    renderQuestion();
+  }
+
+  /* ---------- 首頁 ---------- */
+  function renderHome() {
+    show(
+      '<div class="screen home">' +
+        '<div class="home-top">' +
+          '<div>' +
+            '<p class="kicker">一片茶葉的旅程與冒險</p>' +
+            '<h1 class="home-title">湖口高中<br>茶道與美學社</h1>' +
+          '</div>' +
+          '<span class="stamp" aria-hidden="true">茶<br>道<br>與<br>美<br>學</span>' +
+        '</div>' +
+        '<div class="home-mid">' +
+          '<svg class="cup" viewBox="0 0 128 96" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round">' +
+            '<path d="M16 44 H112 C112 70 92 84 64 84 C36 84 16 70 16 44 Z"/>' +
+            '<path d="M46 90 H82"/>' +
+            '<path d="M54 34 C49 26 59 22 54 12" stroke="#b8946b"/>' +
+            '<path d="M68 34 C63 26 73 22 68 12" stroke="#b8946b"/>' +
+            '<path d="M74 55 q13 -10 27 -3 q-13 10 -27 3 Z" fill="#2e4a3b" stroke="none"/>' +
+            '<path d="M76 55 q12 -2 23 -3" stroke="#f3eee3" stroke-width=".8"/>' +
+            '<path d="M36 58 q8 -7 17 -2 q-8 7 -17 2 Z" fill="#6f8a72" stroke="none"/>' +
+            '<path d="M24 52 H104" stroke="#b8946b" stroke-dasharray="2 4"/>' +
+          '</svg>' +
+          '<p class="lede">今天把手上的一杯茶，<br>往回走一點。</p>' +
+        '</div>' +
+        '<div>' +
+          '<button class="btn-primary" id="start">開始</button>' +
+          '<p class="home-note">十題，一題十幾秒。不用登入，也不用寫名字。</p>' +
+        '</div>' +
+      '</div>'
+    );
+    $('#start').addEventListener('click', function () { reset(); renderQuestion(); });
+  }
+
+  /* ---------- 題目分派 ---------- */
+  function renderQuestion() {
+    var q = QUESTIONS[state.i];
+    if (q.type === 'sort') return renderSort(q);
+    if (q.type === 'vote') return renderVote(q);
+    return renderChoice(q);
+  }
+
+  /* ---------- 單選／感受／偏好 ---------- */
+  function renderChoice(q) {
+    var opts = q.options.map(function (o, k) {
+      return '<button class="opt" data-k="' + k + '"><span class="mark">' + LETTERS[k] + '</span><span class="txt">' + o + '</span></button>';
+    }).join('');
+
+    show(
+      head(q) +
+      '<h2 class="q">' + q.q + '</h2>' +
+      '<div class="opts" role="group" aria-label="選項">' + opts + '</div>' +
+      '<div class="fb" aria-live="polite" hidden></div>' +
+      '<div class="actions" hidden><button class="btn-primary" id="next">' + nextLabel() + '</button></div>'
+    );
+
+    var buttons = $$('.opt');
+    buttons.forEach(function (b) {
+      b.addEventListener('click', function () {
+        answerChoice(q, Number(b.getAttribute('data-k')), buttons);
+      });
+    });
+    $('#next').addEventListener('click', goNext);
+  }
+
+  function answerChoice(q, k, buttons) {
+    if (state.picks[state.i] !== undefined) return;
+    state.picks[state.i] = k;
+
+    $('.opts').classList.add('done');
+    buttons.forEach(function (b) { b.disabled = true; });
+    buttons[k].classList.add('picked');
+
+    var lead = '';
+    if (q.type === 'know') {
+      var ans = buttons[q.answer];
+      ans.classList.add('is-answer');
+      ans.insertAdjacentHTML('beforeend', '<span class="badge">答案</span>');
+      if (k === q.answer) {
+        lead = '沒錯。';
+      } else {
+        buttons[k].insertAdjacentHTML('beforeend', '<span class="badge mine">你的選擇</span>');
+        lead = '這題的答案是「' + q.options[q.answer] + '」。';
+      }
+    }
+
+    var text = (q.fbBy && q.fbBy[k]) || q.fb;
+    var fb = $('.fb');
+    fb.innerHTML = (lead ? '<p class="lead">' + lead + '</p>' : '') + '<p class="text">' + text + '</p>';
+    fb.hidden = false;
+    reveal($('.actions'));
+  }
+
+  /* ---------- 排序 ---------- */
+  function renderSort(q) {
+    var items = q.items.map(function (t, k) {
+      return '<button class="opt sort-item" data-k="' + k + '"><span class="num"></span><span class="txt">' + t + '</span></button>';
+    }).join('');
+
+    show(
+      head(q) +
+      '<h2 class="q">' + q.q + '</h2>' +
+      '<div class="sort-list">' + items + '</div>' +
+      '<div class="sort-tools"><span id="sortHint">點了可以再點一次取消</span><button class="btn-text" id="sortReset">重新排</button></div>' +
+      '<div class="fb" aria-live="polite" hidden></div>' +
+      '<div class="actions" hidden><button class="btn-primary" id="next">' + nextLabel() + '</button></div>'
+    );
+
+    var order = [];
+    var done = false;
+    var buttons = $$('.sort-item');
+
+    function paint() {
+      buttons.forEach(function (b) {
+        var k = Number(b.getAttribute('data-k'));
+        var pos = order.indexOf(k);
+        b.classList.toggle('set', pos > -1);
+        $('.num', b).textContent = pos > -1 ? String(pos + 1) : '';
+        b.setAttribute('aria-label', q.items[k] + (pos > -1 ? '，第 ' + (pos + 1) + ' 站' : '，尚未排序'));
+      });
+    }
+
+    buttons.forEach(function (b) {
+      b.addEventListener('click', function () {
+        if (done) return;
+        var k = Number(b.getAttribute('data-k'));
+        var pos = order.indexOf(k);
+        if (pos > -1) {
+          order = order.slice(0, pos);
+        } else {
+          order.push(k);
+        }
+        paint();
+        if (order.length === q.items.length) finish();
+      });
+    });
+
+    $('#sortReset').addEventListener('click', function () {
+      if (done) return;
+      order = [];
+      paint();
+    });
+
+    function finish() {
+      done = true;
+      state.picks[state.i] = order.slice();
+      buttons.forEach(function (b) { b.disabled = true; });
+      $('.sort-tools').style.visibility = 'hidden';
+
+      var same = order.every(function (v, idx) { return v === q.correct[idx]; });
+      var route = '<ol class="route">' + q.correct.map(function (k) { return '<li>' + q.items[k] + '</li>'; }).join('') + '</ol>';
+      var fb = $('.fb');
+      fb.innerHTML =
+        '<p class="lead">' + (same ? '順序完全一樣。這條路是：' : '大致的順序是這樣：') + '</p>' +
+        route +
+        '<p class="text">' + q.fb + '</p>';
+      fb.hidden = false;
+      reveal($('.actions'));
+    }
+
+    paint();
+    $('#next').addEventListener('click', goNext);
+  }
+
+  /* ---------- 中場 ---------- */
+  function renderPause() {
+    show(
+      '<div class="topbar"><span class="stage">中場</span><span class="count">5 / ' + TOTAL + '</span></div>' +
+      progress(-1, 5) +
+      '<div class="pause">' +
+        '<p class="kicker">第一段到這裡</p>' +
+        '<h2>先把手機放一下。</h2>' +
+        '<p>接下來聽故事，喝第二杯、第三杯。<br>老師說可以了，再往下。</p>' +
+        '<p class="dry">這一頁會乖乖停在這裡，除非你重新整理。</p>' +
+      '</div>' +
+      '<div class="actions"><button class="btn-primary" id="cont">繼續：一片茶葉的旅行</button></div>'
+    );
+    $('#cont').addEventListener('click', function () {
+      state.i = 5;
+      renderQuestion();
+    });
+  }
+
+  /* ---------- 投票 ---------- */
+  function renderVote(q) {
+    var teas = TEAS.map(function (t, k) {
+      return '<button class="tea" data-k="' + k + '" aria-pressed="false">' +
+        '<span class="letter">' + t.key + '</span>' +
+        '<span><span class="cupno">' + t.cup + '</span><span class="name">' + t.name + '</span></span>' +
+        '</button>';
+    }).join('');
+
+    var reasons = REASONS.map(function (r, k) {
+      return '<button class="opt" data-r="' + k + '" aria-pressed="false"><span class="txt">' + r + '</span></button>';
+    }).join('');
+
+    show(
+      head(q) +
+      '<h2 class="q">今天三杯，只能帶走一杯。</h2>' +
+      '<p class="sub">茶名現在公布了。</p>' +
+      '<div class="teas" role="group" aria-label="三款茶">' + teas + '</div>' +
+      '<p class="port-note"><b>關於第二杯</b>　港口茶的名字，來自屏東滿州鄉的港口村，不是因為它坐過船。那裡是臺灣最南端、海拔最低的茶區，秋冬吹著很強的落山風。</p>' +
+      '<div class="reason" hidden>' +
+        '<h3>你選它主要因為？</h3>' +
+        '<div class="opts" role="group" aria-label="原因">' + reasons + '</div>' +
+      '</div>' +
+      '<div class="actions" hidden><button class="btn-primary" id="done">完成</button></div>'
+    );
+
+    var teaBtns = $$('.tea');
+    var reasonBtns = $$('.reason .opt');
+
+    teaBtns.forEach(function (b) {
+      b.addEventListener('click', function () {
+        state.vote = Number(b.getAttribute('data-k'));
+        teaBtns.forEach(function (x) { x.setAttribute('aria-pressed', String(x === b)); });
+        var box = $('.reason');
+        if (box.hidden) reveal(box);
+      });
+    });
+
+    reasonBtns.forEach(function (b) {
+      b.addEventListener('click', function () {
+        state.reason = Number(b.getAttribute('data-r'));
+        reasonBtns.forEach(function (x) { x.setAttribute('aria-pressed', String(x === b)); });
+        var act = $('.actions');
+        if (act.hidden) reveal(act);
+      });
+    });
+
+    $('#done').addEventListener('click', function () {
+      if (state.vote === null || state.reason === null) return;
+      renderFinal();
+    });
+  }
+
+  /* ---------- 最後 ---------- */
+  function renderFinal() {
+    show(
+      '<div class="screen final">' +
+        '<p class="kicker">一片茶葉的旅程與冒險</p>' +
+        '<h2 class="quote">一杯茶喝起來很安靜，<br>但來到杯子以前，<br>其實走過很多地方。</h2>' +
+        '<hr class="rule">' +
+        '<p class="put-down">接下來，把手機放下。</p>' +
+        '<p class="paper-task">在紙上的杯子裡，留下至少三個今天你記得的東西。</p>' +
+        '<p class="paper-ex">可以是：字、圖、箭頭、符號，都可以。</p>' +
+        '<p class="paper-ex" style="color:var(--ink-3);font-size:13px">這個頁面不會上傳任何資料。全班選了哪一杯，等一下由老師用舉手來數。</p>' +
+        '<div class="actions" style="margin-top:8px"><button class="btn-primary" id="memo">最後，留一張紀念圖</button></div>' +
+      '</div>'
+    );
+    $('#memo').addEventListener('click', renderMemento);
+  }
+
+  /* ---------- 紀念頁：茶葉登船證（截圖用） ---------- */
+  function pad(n) { return (n < 10 ? '0' : '') + n; }
+
+  // 共用：擬人化的茶葉旅客（墨綠葉身＋赭紅錯版影子＋小行李箱）
+  var LEAF_TRAVELER =
+    '<g transform="translate(150 60)">' +
+      '<path d="M3 4 C40 36 43 100 3 136 C-37 100 -34 36 3 4 Z" fill="#9c3b25" opacity=".28"/>' +
+      '<path d="M0 0 C37 32 40 96 0 132 C-37 96 -34 32 0 0 Z" fill="#2e4a3b"/>' +
+      '<path d="M0 12 V124" stroke="#f3eee3" stroke-width="1.6" opacity=".7"/>' +
+      '<path d="M0 50 L17 36 M0 74 L-18 60 M0 96 L16 84" stroke="#f3eee3" stroke-width="1.1" opacity=".55"/>' +
+      '<ellipse cx="-9" cy="58" rx="4.2" ry="5.2" fill="#f8f4ec"/><ellipse cx="11" cy="58" rx="4.2" ry="5.2" fill="#f8f4ec"/>' +
+      '<circle cx="-8" cy="59.5" r="2.2" fill="#1f1b17"/><circle cx="12" cy="59.5" r="2.2" fill="#1f1b17"/>' +
+      '<path d="M-5 72 q5 3 10 0" stroke="#f8f4ec" stroke-width="1.4" fill="none" stroke-linecap="round"/>' +
+      '<path d="M-24 84 q24 12 48 0 l2 7 q-26 13 -52 0 Z" fill="#9c3b25"/>' +
+      '<path d="M18 91 l10 22" stroke="#9c3b25" stroke-width="5" stroke-linecap="round"/>' +
+      '<path d="M22 100 L40 116" stroke="#1f1b17" stroke-width="1.6" stroke-linecap="round"/>' +
+      '<rect x="36" y="114" width="26" height="20" rx="2.5" fill="#7a5433"/>' +
+      '<path d="M43 114 v-4 h12 v4" stroke="#1f1b17" stroke-width="1.4" fill="none"/>' +
+      '<rect x="36" y="121" width="26" height="3" fill="#b8946b"/>' +
+      '<path d="M-10 131 l-4 14 M10 131 l4 14" stroke="#1f1b17" stroke-width="1.8" stroke-linecap="round"/>' +
+    '</g>';
+
+  var SCENES = {
+    // 文山包種：坪林的山與霧
+    A: '<rect width="300" height="220" fill="#e6e7dc"/>' +
+       '<circle cx="232" cy="52" r="20" fill="#f3eee3"/>' +
+       '<path d="M0 140 L50 92 L92 124 L140 74 L196 126 L240 90 L300 132 V220 H0 Z" fill="#6f8a72" opacity=".55"/>' +
+       '<path d="M0 166 L60 128 L118 160 L178 118 L236 158 L300 140 V220 H0 Z" fill="#3b5a44" opacity=".75"/>' +
+       '<path d="M-10 118 q40 -10 80 0 t80 0 t80 0 t80 0" stroke="#f8f4ec" stroke-width="7" fill="none" opacity=".75"/>' +
+       '<path d="M20 150 q30 -8 60 0 t60 0" stroke="#f8f4ec" stroke-width="5" fill="none" opacity=".6"/>' +
+       '<path d="M0 205 H300" stroke="#1f1b17" stroke-width="1.2"/>',
+    // 港口茶：最南端的海與落山風
+    B: '<rect width="300" height="220" fill="#e4e2d6"/>' +
+       '<circle cx="64" cy="58" r="22" fill="#9c3b25" opacity=".85"/>' +
+       '<path d="M160 40 q30 -8 60 0 t60 0 M150 58 q30 -8 60 0 t60 0 M172 76 q24 -6 48 0" stroke="#7a5433" stroke-width="1.6" fill="none" stroke-dasharray="6 5"/>' +
+       '<path d="M0 150 H300 V220 H0 Z" fill="#3b5a44" opacity=".8"/>' +
+       '<path d="M0 158 q15 -7 30 0 t30 0 t30 0 t30 0 t30 0 t30 0 t30 0 t30 0 t30 0 t30 0" stroke="#f8f4ec" stroke-width="1.6" fill="none" opacity=".8"/>' +
+       '<path d="M0 176 q15 -7 30 0 t30 0 t30 0 t30 0 t30 0 t30 0 t30 0 t30 0 t30 0 t30 0" stroke="#f8f4ec" stroke-width="1.2" fill="none" opacity=".55"/>' +
+       '<path d="M226 146 h40 l-6 8 h-30 Z M240 146 v-16 l14 12 Z" fill="#1f1b17"/>' +
+       '<path d="M0 205 H300" stroke="#1f1b17" stroke-width="1.2"/>',
+    // 紅烏龍：臺東鹿野的丘陵與傍晚
+    C: '<rect width="300" height="220" fill="#ecdfcb"/>' +
+       '<circle cx="150" cy="140" r="58" fill="#9c3b25" opacity=".78"/>' +
+       '<path d="M0 150 q75 -40 150 -8 t150 -10 V220 H0 Z" fill="#b8946b"/>' +
+       '<path d="M0 176 q80 -30 160 -4 t140 -8 V220 H0 Z" fill="#7a5433"/>' +
+       '<path d="M10 186 q70 -22 140 -2 M30 196 q70 -18 140 0 M150 190 q60 -16 140 -6" stroke="#ecdfcb" stroke-width="1.2" fill="none" opacity=".55"/>' +
+       '<path d="M0 205 H300" stroke="#1f1b17" stroke-width="1.2"/>'
+  };
+
+  var TRAVEL = {
+    A: { from: '坪林', fromSub: '新北・山上的霧', line: '話不多，香氣會先開口。', note: '輕發酵・清香' },
+    B: { from: '港口村', fromSub: '屏東滿州・臺灣最南端', line: '吹過落山風，比較禁得起旅途。', note: '靠海・低海拔' },
+    C: { from: '鹿野', fromSub: '臺東・縱谷的丘陵', line: '一半紅茶，一半烏龍，不想被歸類。', note: '重發酵・熟韻' }
+  };
+
+  function renderMemento() {
+    var t = TEAS[state.vote];
+    var tr = TRAVEL[t.key];
+    var d = new Date();
+    var dateText = d.getFullYear() + '.' + pad(d.getMonth() + 1) + '.' + pad(d.getDate());
+    var no = 'TW-' + pad(d.getMonth() + 1) + pad(d.getDate()) + '-' + t.key + String(Math.floor(Math.random() * 900) + 100);
+
+    show(
+      '<div class="screen memento-page">' +
+        '<figure class="ticket" aria-label="茶葉登船證紀念圖">' +
+          '<div class="t-head">' +
+            '<div><div class="t-title">茶葉登船證</div><div class="t-en">BOARDING PASS</div></div>' +
+            '<div class="t-club">湖口高中<br>茶道與美學社</div>' +
+          '</div>' +
+          '<div class="t-route">' +
+            '<div><span class="lab">FROM 出發</span><span class="place">' + tr.from + '</span><span class="t-sub">' + tr.fromSub + '</span></div>' +
+            '<svg class="arrow" width="44" height="14" viewBox="0 0 44 14" aria-hidden="true"><path d="M0 7 H40 M34 2 L41 7 L34 12" stroke="currentColor" stroke-width="1.5" fill="none"/></svg>' +
+            '<div class="to"><span class="lab">TO 抵達</span><span class="place">你的杯子</span><span class="t-sub">' + t.cup + '</span></div>' +
+          '</div>' +
+          '<svg class="t-scene" viewBox="0 0 300 220" aria-hidden="true">' + SCENES[t.key] + LEAF_TRAVELER + '</svg>' +
+          '<p class="t-line"><small>旅客留言</small>「' + tr.line + '」</p>' +
+          '<div class="t-grid">' +
+            '<div><span class="lab">旅客</span><span class="val big">' + t.name + '</span></div>' +
+            '<div><span class="lab">日期</span><span class="val">' + dateText + '</span></div>' +
+          '</div>' +
+          '<div class="t-perf" aria-hidden="true"></div>' +
+          '<div class="t-stub">' +
+            '<div class="t-bar" aria-hidden="true"></div>' +
+            '<div class="t-no">' + no + '<br>一片茶葉的旅程與冒險</div>' +
+          '</div>' +
+        '</figure>' +
+        '<p class="memento-hint">截圖，就可以把這張登船證帶走。</p>' +
+        '<p class="memento-after">接下來還有四趟，<br>我們一起帶著茶葉繼續旅行</p>' +
+        '<button class="btn-text" id="again">從頭再走一次</button>' +
+      '</div>'
+    );
+    $('#again').addEventListener('click', function () { reset(); renderHome(); });
+  }
+
+  reset();
+  renderHome();
+})();
+</script>
+</body>
+</html>
